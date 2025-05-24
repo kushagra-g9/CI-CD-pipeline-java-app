@@ -20,7 +20,7 @@ pipeline {
       }
     }
     stage('Static Code Analysis') {
-      agents any
+      
       steps {
          withSonarQubeEnv('SonarQube') {
                 sh 'mvn clean package sonar:sonar'
