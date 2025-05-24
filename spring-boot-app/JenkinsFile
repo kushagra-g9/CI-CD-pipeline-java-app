@@ -14,6 +14,12 @@ pipeline {
   }
 
   stages {
+   stage('Clean Workspace') {
+    steps {
+    cleanWs()  // Jenkins workspace cleanup plugin
+    }
+  }
+
     stage('Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/kushagra-g9/CI-CD-pipeline-java-app.git'
