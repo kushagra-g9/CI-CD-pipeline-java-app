@@ -1,12 +1,6 @@
 pipeline {
-  agent {
-    docker {
-      image 'abhishekf5/maven-abhishek-docker-agent:v1'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-    }
-  }
-  
-  environment {
+  agent any
+    environment {
     DOCKER_IMAGE = "kushagrag99/ultimate-cicd:${BUILD_NUMBER}"
     REGISTRY_CREDENTIALS = credentials('docker-cred')
     GIT_REPO_NAME = "CI-CD-pipeline-java-app"
@@ -29,6 +23,7 @@ pipeline {
     stage('Build and Test') {
       steps {
         dir('spring-boot-app') {
+           sh 'ls -la'
            sh 'mvn -B -DskipTests clean package'
          
         }
