@@ -47,6 +47,8 @@
   </dependencies>
 
   <build>
+ <finalName>app</finalName>
+
     <plugins>
       <!-- Spring Boot Plugin -->
       <plugin>
