@@ -1,2 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
+kind: Application
+metadata:
+  name: spring-boot-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: kushagrag99/ultimate-cicd
+    argocd-image-updater.argoproj.io/kushagrag99_ultimate-cicd.update-strategy: semver
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kushagra-g9/CI-CD-pipeline-java-app
+    targetRevision: main
+    path: spring-boot-app-manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
