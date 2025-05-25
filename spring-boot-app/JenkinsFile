@@ -1,7 +1,7 @@
 pipeline {
   agent any
     environment {
-    DOCKER_IMAGE = "kushagrag99/ultimate-cicd:${BUILD_NUMBER}"
+    DOCKER_IMAGE = "kushagrag99/ultimate-cicd:v1.${BUILD_NUMBER}"
     REGISTRY_CREDENTIALS = credentials('docker-cred')
     GIT_REPO_NAME = "CI-CD-pipeline-java-app"
     GIT_USER_NAME = "kushagra-g9"
