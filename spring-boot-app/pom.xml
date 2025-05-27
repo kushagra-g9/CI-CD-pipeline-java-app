@@ -2,14 +2,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.5</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <version>3.3.11</version> <!-- ✅ UPGRADED Spring Boot -->
+    <relativePath/>
   </parent>
 
   <groupId>com.mycompany.app</groupId>
@@ -30,6 +30,13 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
+    <!-- ✅ Explicitly Add spring-webmvc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>6.1.14</version> <!-- ✅ LATEST version -->
+    </dependency>
+
     <!-- JUnit for Testing -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -47,7 +54,7 @@
   </dependencies>
 
   <build>
- <finalName>app</finalName>
+    <finalName>app</finalName>
 
     <plugins>
       <!-- Spring Boot Plugin -->
@@ -93,4 +100,3 @@
     </plugins>
   </build>
 </project>
-
