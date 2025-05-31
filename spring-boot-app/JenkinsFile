@@ -41,6 +41,14 @@ pipeline {
       }
     }
 
+stage("quality gate"){
+           steps {
+                script {
+                    waitForQualityGate abortPipeline:true
+                }
+            } 
+        }
+
     stage('Build Docker Image') {
       steps {
         dir('spring-boot-app') {
