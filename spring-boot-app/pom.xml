@@ -45,6 +45,12 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+           <dependency>
+  <groupId>org.apache.tomcat.embed</groupId>
+  <artifactId>tomcat-embed-core</artifactId>
+  <version>10.1.42</version> <!-- ✅ Fixed version -->
+</dependency>
+
   </dependencies>
 
   <build>
