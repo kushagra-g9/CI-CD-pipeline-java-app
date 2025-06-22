@@ -29,15 +29,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
-    <!-- ✅ Explicitly Add spring-webmvc -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>6.1.14</version> <!-- ✅ LATEST version -->
-    </dependency>
-
-    
+           <!-- Override tomcat-embed-core to fix CVE-2025-48988 -->
+ <dependency>
+  <groupId>org.apache.tomcat.embed</groupId>
+    <artifactId>tomcat-embed-core</artifactId>
+    <version>10.1.42</version> <!-- ✅ Safe version -->
+   </dependency>
 
     <!-- Spring Boot Test -->
     <dependency>
