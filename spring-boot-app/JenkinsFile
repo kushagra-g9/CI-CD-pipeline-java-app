@@ -30,6 +30,14 @@ pipeline {
         }
       }
     }
+stage('OWASP Dependency Check') {
+  steps {
+    dir('spring-boot-app') {
+      sh 'mvn org.owasp:dependency-check-maven:check'
+    }
+  }
+}
+
 
     stage('Static Code Analysis') {
       steps {
@@ -40,6 +48,13 @@ pipeline {
         }
       }
     }
+stage('SonarQube Quality Gate') {
+  steps {
+    timeout(time: 1, unit: 'MINUTES') {
+      waitForQualityGate abortPipeline: true
+    }
+  }
+}
 
 
     stage('Build Docker Image') {
