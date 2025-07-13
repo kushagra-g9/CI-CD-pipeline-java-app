@@ -8,7 +8,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.3.11</version> <!-- ✅ UPGRADED Spring Boot -->
+    <version>3.3.1</version> <!-- ✅ Latest stable -->
     <relativePath/>
   </parent>
 
@@ -21,7 +21,21 @@
   <properties>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
   </properties>
+
+  <!-- ✅ Dependency Management for consistency -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>3.3.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <!-- Spring Boot Web -->
@@ -29,12 +43,19 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-           <!-- Override tomcat-embed-core to fix CVE-2025-48988 -->
- <dependency>
-  <groupId>org.apache.tomcat.embed</groupId>
-    <artifactId>tomcat-embed-core</artifactId>
-    <version>10.1.42</version> <!-- ✅ Safe version -->
-   </dependency>
+
+    <!-- ✅ Override tomcat-embed-core to fix CVE-2025-48988 -->
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>10.1.42</version>
+    </dependency>
+
+    <!-- Spring Boot Actuator (optional for monitoring) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
 
     <!-- Spring Boot Test -->
     <dependency>
@@ -42,21 +63,19 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-  
-
   </dependencies>
 
   <build>
     <finalName>app</finalName>
-
     <plugins>
-      <!-- Spring Boot Plugin -->
+      <!-- ✅ Spring Boot Plugin -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.3.1</version>
       </plugin>
 
-      <!-- Maven Compiler -->
+      <!-- ✅ Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -66,7 +85,7 @@
         </configuration>
       </plugin>
 
-      <!-- Maven Enforcer Plugin -->
+      <!-- ✅ Enforcer Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -90,19 +109,27 @@
           </execution>
         </executions>
       </plugin>
-             <plugin>
-  <groupId>org.owasp</groupId>
-  <artifactId>dependency-check-maven</artifactId>
-  <version>9.0.0</version> <!-- Use latest stable -->
-  <executions>
-    <execution>
-      <goals>
-        <goal>check</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
+
+      <!-- ✅ OWASP Dependency Check -->
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>9.0.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory>
+          <format>ALL</format>
+          <failBuildOnCVSS>7</failBuildOnCVSS> <!-- Optional: fail build if high severity -->
+        </configuration>
+      </plugin>
 
     </plugins>
   </build>
+
 </project>
