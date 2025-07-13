@@ -8,7 +8,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.4</version> <!-- ✅ Latest Spring Boot -->
+    <version>3.3.11</version> <!-- ✅ Latest Spring Boot -->
     <relativePath/>
   </parent>
 
@@ -30,7 +30,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.3.3</version>
+        <version>3.3.11</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
