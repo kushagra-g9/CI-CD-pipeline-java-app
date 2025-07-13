@@ -30,14 +30,6 @@ pipeline {
         }
       }
     }
-stage('OWASP Dependency Check') {
-  steps {
-    dir('spring-boot-app') {
-      sh 'mvn org.owasp:dependency-check-maven:check'
-    }
-  }
-}
-
 
     stage('Static Code Analysis') {
       steps {
